@@ -44,7 +44,7 @@ for tag in tree.iter():
         classification_list.append([cls1, cls2, cls3, cls4, cls5])
         
 with codecs.open('classification.csv', 'w', 'cp932', 'ignore') as f:
-    writer = csv.writer(f, delimiter='\t')
+    writer = csv.writer(f, delimiter=',')
     writer.writerows(classification_list)
 
 # ##################################################
@@ -68,7 +68,7 @@ for tag in tree.iter():
         mapping_list.append([classification, text])
         
 with codecs.open('classification_property_mapping.csv', 'w', 'cp932', 'ignore') as f:
-    writer = csv.writer(f, delimiter='\t')
+    writer = csv.writer(f, delimiter=',')
     writer.writerows(mapping_list)
 
 
