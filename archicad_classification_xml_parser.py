@@ -70,7 +70,7 @@ with codecs.open('property.csv', 'w', encoding="utf_8_sig") as f:
 
 # The level is limitted under 4th. Meybe it will not be deeper than that...
 
-classification_list = [["Level 1", "Level 2", "Level 3", "Level 4", "Merged"] ]
+classification_list = [["Level 1", "Level 2", "Level 3", "Level 4", "Merged"]]
 
 xpath1 = r"/BuildingInformation/Classification/System/Items/Item\[\d\]/ID"
 xpath2 = r"/BuildingInformation/Classification/System/Items/Item\[\d\]/Children/Item\[\d\]/ID"
@@ -93,7 +93,8 @@ for tag in tree.iter():
     elif re.match(xpath4, path):
         cls4 = text
         classification_list.append([cls1, cls2, cls3, cls4, cls4])
-with codecs.open('classification.csv', encoding="utf_8_sig") as f:
+        
+with codecs.open('classification.csv', 'w', encoding="utf_8_sig") as f:
     writer = csv.writer(f, delimiter=',')
     writer.writerows(classification_list)
 
