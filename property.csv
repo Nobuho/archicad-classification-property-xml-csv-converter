@@ -1,4 +1,4 @@
-﻿
+﻿name	discription	data type	defaultvalue	opt1	opt2	opt3	opt4	opt5	opt6	opt7	opt8	opt9	opt10	opt11
 室名_英語	英語の室名を記載	String	未定義
 室番号	室番号を記載　※ゾーン設定にもありますが、どちらを使ってもＯＫです。こちらのプロパティはExcelで編集できるので便利です。	String	未定義
 分類1	用途分類（大分類）を記載します。	String	未定義
