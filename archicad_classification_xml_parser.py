@@ -7,42 +7,91 @@ import re
 tree = etree.parse("archicad_classification_xml/archicad_classification_xml.xml")
 
 # ##################################################
+# making classification property list
+# ##################################################
+
+# This csv is just mapping list between classification and property.
+# You need to combine these two list based on this mapping table.
+
+property_list = [["name", "discription", "data type", "defaultvalue", "opt1", "opt2", "opt3", "opt4", "opt5", "opt6", "opt7", "opt8", "opt9", "opt10", "opt11"]]
+tmp = []
+optset_dict = {}
+
+xpath_property_name = r"/BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/Name"
+xpath_property_discription = r"/BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/Description"
+xpath_property_type1 = r"/BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/ValueDescriptor/ValueType"
+xpath_property_type2 = r"/BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/ValueDescriptor/EnumerationValueDescriptorWithStoredValues/ValueType"
+xpath_property_default = r"/BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/DefaultValue/Variant/Value"
+xpath_property_optset = r"/BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/ValueDescriptor/EnumerationValueDescriptorWithStoredValues/Values/Value\[\d+?\]/Variant/Value"
+xpath_property_optset_key = r"/BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/ValueDescriptor/EnumerationValueDescriptorWithStoredValues/Values/Key\[\d*\]"
+
+for tag in tree.iter():
+    path = tree.getpath(tag)
+    text = tree.xpath(path)[0].text
+    if text is None:
+        text = "none"
+    if re.match(xpath_property_name, path):
+        property_list.append(tmp)
+        tmp = []
+        property_name = text
+        tmp.append(property_name)
+    elif re.match(xpath_property_discription, path):
+        property_discription = text
+        tmp.append(property_discription)
+    elif re.match(xpath_property_type1, path) or re.match(xpath_property_type2, path):
+        if text == "3":
+            text = "OptionSet"
+        property_type = text
+        tmp.append(property_type)
+    elif re.match(xpath_property_default, path):
+        if re.match("........-....-....-....-............", text):
+            # If type is optset it's needed to add special default value based on the optset key
+            tmp.insert(3, optset_dict[text])
+            continue
+        property_default = text
+        tmp.append(property_default)
+    elif re.match(xpath_property_optset_key, path):
+        property_optset_key = text
+    elif re.match(xpath_property_optset, path):
+        property_optset = text
+        optset_dict[property_optset_key] = property_optset
+        tmp.append(property_optset)
+
+property_list.append(tmp)
+
+with codecs.open('property.csv', 'w', encoding="utf_8_sig") as f:
+    writer = csv.writer(f, delimiter='\t')
+    writer.writerows(property_list)
+
+# ##################################################
 # making classification list
 # ##################################################
 
-classification_list = []
+# The level is limitted under 4th. Meybe it will not be deeper than that...
 
-search_xpath1 = r"/BuildingInformation/Classification/System/Items/Item\[\d\]/ID"
-search_xpath2 = r"/BuildingInformation/Classification/System/Items/Item\[\d\]/Children/Item\[\d\]/ID"
-search_xpath3 = r"/BuildingInformation/Classification/System/Items/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/ID"
-search_xpath4 = r"/BuildingInformation/Classification/System/Items/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/ID"
-search_xpath5 = r"/BuildingInformation/Classification/System/Items/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/ID"
+classification_list = [["Level 1", "Level 2", "Level 3", "Level 4", "Merged"] ]
+
+xpath1 = r"/BuildingInformation/Classification/System/Items/Item\[\d\]/ID"
+xpath2 = r"/BuildingInformation/Classification/System/Items/Item\[\d\]/Children/Item\[\d\]/ID"
+xpath3 = r"/BuildingInformation/Classification/System/Items/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/ID"
+xpath4 = r"/BuildingInformation/Classification/System/Items/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/ID"
+xpath5 = r"/BuildingInformation/Classification/System/Items/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/ID"
 
 for tag in tree.iter():
-
     path = tree.getpath(tag)
     text = tree.xpath(path)[0].text
-
-    if re.match(search_xpath1, path):
+    if re.match(xpath1, path):
         cls1 = text
-        classification_list.append([cls1, cls1, cls1, cls1, cls1])
-
-    elif re.match(search_xpath2, path):
+        classification_list.append([cls1, "", "", "", cls1])
+    elif re.match(xpath2, path):
         cls2 = text
-        classification_list.append([cls1, cls2, cls2, cls2, cls2])
-
-    elif re.match(search_xpath3, path):
+        classification_list.append([cls1, cls2, "", "", cls2])
+    elif re.match(xpath3, path):
         cls3 = text
-        classification_list.append([cls1, cls2, cls3, cls3, cls3])
-
-    elif re.match(search_xpath4, path):
+        classification_list.append([cls1, cls2, cls3, "", cls3])
+    elif re.match(xpath4, path):
         cls4 = text
         classification_list.append([cls1, cls2, cls3, cls4, cls4])
-
-    elif re.match(search_xpath5, path):
-        cls5 = test
-        classification_list.append([cls1, cls2, cls3, cls4, cls5])
-        
 with codecs.open('classification.csv', 'w', 'cp932', 'ignore') as f:
     writer = csv.writer(f, delimiter=',')
     writer.writerows(classification_list)
@@ -51,41 +100,21 @@ with codecs.open('classification.csv', 'w', 'cp932', 'ignore') as f:
 # making classification property mapping list
 # ##################################################
 
-mapping_list = []
+# This csv is just mapping list between classification and property.
+# You need to combine these two list based on this mapping table.
 
-search_xpath_property = r"/BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/Name"
-search_xpath_classification = r"/BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup.*ItemID"
+mapping_list = [["classification", "property"]]
+
+xpath_property_name = r"/BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/Name"
+xpath_classification = r"/BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup.*ItemID"
 
 for tag in tree.iter():
-
     path = tree.getpath(tag)
     text = tree.xpath(path)[0].text
-
-    if re.match(search_xpath_property, path):
+    if re.match(xpath_property_name, path):
         classification = text
-
-    elif re.match(search_xpath_classification, path):
+    elif re.match(xpath_classification, path):
         mapping_list.append([classification, text])
-        
 with codecs.open('classification_property_mapping.csv', 'w', 'cp932', 'ignore') as f:
     writer = csv.writer(f, delimiter=',')
     writer.writerows(mapping_list)
-
-
-# /BuildingInformation/Classification/System/Items/Item\[\d\]/ID
-# /BuildingInformation/Classification/System/Items/Item\[\d\]/Children/Item\[\d\]/ID
-# /BuildingInformation/Classification/System/Items/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/ID
-# /BuildingInformation/Classification/System/Items/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/ID
-# /BuildingInformation/Classification/System/Items/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/ID
-
-# /BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup[7]/PropertyDefinitions/PropertyDefinition[4]/ClassificationIDs/ClassificationID/ItemID
-# /BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup[7]/PropertyDefinitions/PropertyDefinition[2]/Name
-
-# search_xpath = r"/BuildingInformation/Classification/System/Items/Item.*"
-# search_tag = r".*ID"
-
-# for tag in tree.iter():
-#     path = tree.getpath(tag)
-#     if re.match(search_xpath, path) and re.match(search_tag, path):
-#         level = path.count("Children")
-#         print(","*level,tree.xpath(path)[0].text)

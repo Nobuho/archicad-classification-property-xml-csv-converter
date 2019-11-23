@@ -1,0 +1,366 @@
+﻿name	discription	data type	defaultvalue	opt1	opt2	opt3	opt4	opt5	opt6	opt7	opt8	opt9	opt10	opt11
+
+室名_英語	英語の室名を記載	String	未定義
+室番号	室番号を記載　※ゾーン設定にもありますが、どちらを使ってもＯＫです。こちらのプロパティはExcelで編集できるので便利です。	String	未定義
+分類1	用途分類（大分類）を記載します。	String	未定義
+分類2	用途分類（中分類）を記載します。	String	未定義
+分類3	用途分類（小分類）を記載します。	String	未定義
+分類4	用途分類（小小分類）を記載します。	String	未定義
+分類5	用途分類（小小小分類）を記載します。	String	未定義
+居室・非居室	居室or非居室を記載	OptionSet	未選択	未選択	居室	非居室	対象外
+収容人数［人］	収容人数を記載します。	Numeric	0
+重要機能室	重要機能室の該当を記載	OptionSet	未選択	未選択	-	〇
+防音［dBA］	防音が必要な室に対して値[dBA]を指定します。　※NC値の場合は別のプロパティを使用してください	Numeric	0
+防音［NC］	防音が必要な室に対して値[NC]を指定します。　※dBA値の場合は別のプロパティを使用してください	Numeric	0
+騒音発生［dBA］	騒音が発生する室の騒音値を記載してください。	String	未定義
+セキュリティレベル［レベル］	セキュリティレベルを記載	Numeric	0
+人員_固定値［人］	none	Numeric	0
+清浄度［クラス］	清浄度を記載	Numeric	0
+設備指定色塗装［有無］	設備関連の指定色塗装があるかを記載	OptionSet	未選択	未選択	有	無
+清浄度クラス	清浄度クラスを設定します。	OptionSet	未選択	クラス1	クラス2	クラス3	クラス4	クラス5	クラス6	クラス7	クラス8	クラス9	対象外	未選択
+その他特記事項1_＊項目名記入＊	"任意の特記事項を記載　プロパティ名を編集してください。
+例：その他特記事項1_いろはにほへと"	String	未定義
+その他特記事項2_＊項目名記入＊	"任意の特記事項を記載　プロパティ名を編集してください。
+例：その他特記事項1_いろはにほへと"	String	未定義
+その他特記事項3_＊項目名記入＊	"任意の特記事項を記載　プロパティ名を編集してください。
+例：その他特記事項1_いろはにほへと"	String	未定義
+□表記順□	仕上表の並び順を記載。この値でソートすれば仕上げ表を並び替えできます	Numeric	0
+階_仕上表表記用	"仕上表表記用の階を記入する場合に記載。
+例：トイレが複数あるため、階を「共通」として記載。"	String	-
+内装制限	内装制限を記載	OptionSet	未選択	未選択	-	《不》	（不）	《準》	（準）	（難）
+排煙方式	排煙方式を記載	OptionSet	未選択	未選択	-	自然	機械	免除
+免除根拠	排煙免除根拠を記載	OptionSet	未選択	未選択	-	告ロ	告ハ	告ニ（1）	告ニ（2）	告ニ（3）	告ニ（4）	告ホ	令126
+天井［有無］	天井が直天の場合は「無」を選択してください。	OptionSet	未選択	未選択	無	普通	段差	傾斜
+天井高１	"主たる天井高さを記載。直天は0.00と入力してください。
+折上天井、傾斜天井の場合は天井高2も記載。"	Numeric	0
+天井高２	"サブの天井高さを記載。直天は0.00と入力してください。
+折上天井、傾斜天井の場合に天井高2を記載。"	Numeric	0
+天井：仕上	天井仕上を記載	String	未定義
+天井：下地	天井下地を記載	String	未定義
+天井：認定番号	天井仕上の認定番号を記載	String	未定義
+床スラブ高レベル差［有無］	スラブのレベル差を記載します。床スラブに高低差が無い場合は「無」にしてください。	OptionSet	未選択	未選択	無	段差	傾斜
+床スラブ高１	主たる床スラブ高さを記載。±0は「0.00」と入力してください。	Numeric	0
+床スラブ高２	サブの床スラブ高さを記載。±0は「0.00」と入力してください。	Numeric	0
+床：仕上	床仕上げを記載	String	未定義
+床：下地	床下地を記載	String	未定義
+床：防水種別	床の防水種別を記載	String	未定義
+床仕上レベル差［有無］	スラブのレベル差を記載します。床がスロープ、段差になっていない場合は「無」にしてください。	OptionSet	未選択	未選択	無	段差	傾斜
+床仕上高１	主たる床仕上高さを記載。±0は「0.00」と入力してください。	Numeric	0
+床仕上高２	サブの床仕上高さを記載。±0は「0.00」と入力してください。	Numeric	0
+梁形：仕上	梁型の仕上を記載	String	未定義
+梁形：下地	梁型の下地を記載	String	未定義
+梁形：認定番号	梁型の仕上の認定番号を記載	String	未定義
+壁：仕上	壁の仕上を記載	String	未定義
+壁：下地	壁の下地を記載	String	未定義
+壁：認定番号	壁の仕上の認定番号を記載	String	未定義
+幅木：仕上	幅木の仕上を記載	String	未定義
+幅木：下地	幅木の下地を記載	String	未定義
+幅木：高さ［mm］	幅木の高さを記載	Numeric	0
+廻り縁	廻り縁を記載	String	未定義
+造り付け造作・付属器具等	造り付け造作・付属器具等を記載	String	未定義
+天井高（文字列）	"「天井有・無」が「無」の場合「直天」と表示します。「天井高２」の値が「0」より大きい場合「天井高１」と「天井高２」を連結して表示します。
+「TK05内部仕上表（レベル文字列）」で利用しています。"	String
+床仕上高（文字列）	"「床仕上レベル差」が「有」の場合「床仕上高１」と「床仕上高２」の値を連結します。「床仕上レベル差」が「無」の場合「床仕上高１」の値のみ表示します。
+「TK05内部仕上表（レベル文字列）」で利用しています。"	String
+床スラブ高（文字列）	"「床スラブ高レベル差」が「有」の場合「床スラブ高１」と「床スラブ高２」の値を連結します。「床スラブ高レベル差」が「無」の場合「床スラブ高１」の値のみ表示します。
+「TK05内部仕上表（レベル文字列）」で利用しています。"	String
+幅木高（文字列）	"「幅木：高さ」に「H=」を連結して表示します。
+「TK05内部仕上表（レベル文字列）」で利用しています。"	String
+法規_採光_非常照明［有無］	非常照明の有無を記載	OptionSet	未選択	未選択	有	無
+法規_採光_種別［1/n］	"採光の種別を記載
+例：1/20採光→1/nなので「20」を記載"	Numeric	0
+法規_採光_特記	採光について特記を記載	String	未定義
+法規_採光_必要面積［m2］	"採光必要面積を記載。基本的には室面積×「法規_採光_種別［1/n］」で得られた面積。
+※Archicad22では自動的に計算可能。"	Numeric	0
+法規_採光_有効面積［m2］	確保できている採光有効面積を記載	Numeric	0
+法規_換気_換気方式	換気方式を記載	OptionSet	未選択	未選択	-	自然	機械
+法規_換気_特記	換気について特記を記載	String	未定義
+法規_換気_必要面積［m2］	換気必要面積を記載。	Numeric	0
+法規_換気_有効面積［m2］	確保できている換気有効面積を記載	Numeric	0
+法規_換気_火気使用	換気について、火気使用に該当するか記載	String	未定義
+法規_排煙_特記	排煙について特記事項を記載	String	未定義
+法規_排煙_必要面積［m2］	排煙必要面積を記載	Numeric	0
+法規_排煙_有効面積［m2］	確保できている排煙有効面積を記載	Numeric	0
+積載荷重_番号	none	String	未定義
+積載荷重_用途	none	String	未定義
+積載荷重［N/m2］_床	none	Numeric	0
+積載荷重［N/m2］_小梁	none	Numeric	0
+積載荷重［N/m2］_架構	none	Numeric	0
+積載荷重［N/m2］_地震	none	Numeric	0
+荷重_備考	none	String	未定義
+仕上荷重_番号	none	String	未定義
+仕上荷重_名称	none	String	未定義
+仕上荷重［N/m2］	none	Numeric	0
+室用途［設備用］	none	String	未定義
+室環境［設備用］	none	String	未定義
+計量ゾーン①	none	String	未定義
+計量ゾーン②	none	String	未定義
+計量ゾーン③	none	String	未定義
+給電ゾーン①	none	String	未定義
+給電ゾーン②	none	String	未定義
+消火設備ゾーン	none	String	未定義
+電灯_基準容量［VA/m2］	none	Numeric	0
+動力_基準容量［VA/m2］	none	Numeric	0
+電灯_照明_常用回路［VA/m2］	none	Numeric	0
+電灯_照明_発電回路［VA/m2］	none	Numeric	0
+電灯_一般コンセント_常用回路［VA/m2］	none	Numeric	0
+電灯_一般コンセント_発電回路［VA/m2］	none	Numeric	0
+電灯_FCUコンセント_常用回路［VA/m2］	none	Numeric	0
+電灯_FCUコンセント_発電回路［VA/m2］	none	Numeric	0
+電灯_OA負荷コンセント_常用回路［VA/m2］	none	Numeric	0
+電灯_OA負荷コンセント_発電回路［VA/m2］	none	Numeric	0
+電灯_その他_常用回路［VA/m2］	none	Numeric	0
+電灯_その他_発電回路［VA/m2］	none	Numeric	0
+電灯_単独回路_常用回路_負荷名	none	String	未定義
+電灯_単独回路_常用回路［VA］	none	Numeric	0
+電灯_単独回路_発電回路_負荷名	none	String	未定義
+電灯_単独回路_発電回路［VA］	none	Numeric	0
+動力_空調熱源（冷凍機・PAC空調）_常用回路［VA］	none	Numeric	0
+動力_空調熱源（冷凍機・PAC空調）_発電回路［VA］	none	Numeric	0
+動力_エレベーター_常用回路［VA］	none	Numeric	0
+動力_エレベーター_発電回路［VA］	none	Numeric	0
+動力_空調関係_常用回路［VA］	none	Numeric	0
+動力_空調関係_発電回路［VA］	none	Numeric	0
+動力_衛生関係_常用回路［VA］	none	Numeric	0
+動力_衛生関係_発電回路［VA］	none	Numeric	0
+動力_その他回路_常用回路［VA］	none	Numeric	0
+動力_その他回路_発電回路［VA］	none	Numeric	0
+照明_設計照度［Lx］	none	Numeric	0
+照明_調光［有無］	none	String	未定義
+照明_制御方式	none	String	未定義
+照明_GC回路［%］	none	Numeric	0
+照明_備考	none	String	未定義
+照明器具①_器具番号	none	String	未定義
+照明器具①_色温度［K］	none	Numeric	0
+照明器具②_器具番号	none	String	未定義
+照明器具②_色温度［K］	none	Numeric	0
+照明_作業面高さ［m］	none	Numeric	0
+照明_器具の下り［m］	none	Numeric	0
+照明_反射率_天井［%］	none	Numeric	0
+照明_反射率_壁［%］	none	Numeric	0
+照明_反射率_床［%］	none	Numeric	0
+照明器具_非常照明_器具形式	none	String	未定義
+照明器具_非常照明_器具個数［個］	none	Numeric	0
+照明器具_避難口誘導灯_器具形式	none	String	未定義
+照明器具_避難口誘導灯_器具個数［個］	none	Numeric	0
+照明器具_通路誘導灯_器具型式	none	String	未定義
+照明器具_通路誘導灯_器具個数［個］	none	Numeric	0
+電源_コンセント_AC一般用［有無］	none	String	未定義
+電源_コンセント_AC一般用［個］	none	Numeric	0
+電源_コンセント_GAC［有無］	none	String	未定義
+電源_コンセント_GAC［個］	none	Numeric	0
+弱電_電話［有無］	none	String	未定義
+弱電_電話［個］	none	Numeric	0
+弱電_LAN_有線［有無］	none	String	未定義
+弱電_LAN_有線［個］	none	Numeric	0
+弱電_LAN_無線［有無］	none	String	未定義
+弱電_LAN_無線［個］	none	Numeric	0
+弱電_放送_業務放送［有無］	none	String	未定義
+弱電_放送_業務放送［個］	none	Numeric	0
+弱電_放送_非常放送［有無］	none	String	未定義
+弱電_放送_非常放送［個］	none	Numeric	0
+弱電_TV［有無］	none	String	未定義
+弱電_TV［個］	none	Numeric	0
+弱電_インターホン	none	String	未定義
+弱電_ITV	none	String	未定義
+弱電_非常呼出	none	String	未定義
+弱電_AV機器	none	String	未定義
+弱電_入退室管理	none	String	未定義
+電気備考_設計メモ	none	String	未定義
+給水_上水	none	String	未定義
+給水_雑用水	none	String	未定義
+給水_系統	none	String	未定義
+給湯_中央（電気）	none	String	未定義
+給湯_中央（ガス）	none	String	未定義
+給湯_局所（電気）	none	String	未定義
+給湯_局所（ガス）	none	String	未定義
+排水_汚水	none	String	未定義
+排水_雑排水	none	String	未定義
+排水_厨房	none	String	未定義
+排水_特殊	none	String	未定義
+ガス	none	String	未定義
+ユニット_大便器_FV［個］	none	Numeric	0
+ユニット_大便器_FT［個］	none	Numeric	0
+ユニットトイレ_多機能トイレ_FV［個］	none	Numeric	0
+ユニットトイレ_多機能トイレ_FT［個］	none	Numeric	0
+ユニット_小便器［個］	none	Numeric	0
+ユニット_洗面器［個］	none	Numeric	0
+ユニット_掃除用流し［個］	none	Numeric	0
+ユニットバス［個］	none	Numeric	0
+ユニットシャワー［個］	none	Numeric	0
+衛生器具_在来_大便器_FV［個］	none	Numeric	0
+衛生器具_在来_大便器_FT［個］	none	Numeric	0
+衛生器具_在来_大便器_LT［個］	none	Numeric	0
+衛生器具_在来_多機能トイレ_FV［個］	none	Numeric	0
+衛生器具_在来_多機能トイレ_FT［個］	none	Numeric	0
+衛生器具_在来_多機能トイレ_LT［個］	none	Numeric	0
+衛生器具_在来_小便器［個］	none	Numeric	0
+衛生器具_在来_洗面器［個］	none	Numeric	0
+衛生器具_在来_手洗器［個］	none	Numeric	0
+衛生器具_在来_エアタオル［個］	none	Numeric	0
+衛生器具_在来_事務室用流し［個］	none	Numeric	0
+衛生器具_在来_個所用流し［個］	none	Numeric	0
+衛生器具_在来_料理場流し_給水栓［個］	none	Numeric	0
+衛生器具_在来_料理場流し_混合栓［個］	none	Numeric	0
+衛生器具_在来_食器洗流し［個］	none	Numeric	0
+衛生器具_在来_掃除用流し［個］	none	Numeric	0
+衛生器具_在来_浴槽［個］	none	Numeric	0
+衛生器具_在来_シャワー［個］	none	Numeric	0
+衛生器具_在来_水飲み器［個］	none	Numeric	0
+衛生器具_在来_湯沸し器［個］	none	Numeric	0
+衛生器具_在来_オストメイト［個］	none	Numeric	0
+衛生器具_在来_汚物流し［個］	none	Numeric	0
+衛生器具_在来_散水栓［個］	none	Numeric	0
+衛生備考_設計メモ	none	String	未定義
+空調室	none	String	未定義
+室内_夏期_温度［℃］	none	String	未定義
+室内_夏期_相対湿度［%］	none	String	未定義
+室内_冬期_温度［℃］	none	String	未定義
+室内_冬期_相対湿度［%］	none	String	未定義
+空調_熱源種別	none	String	未定義
+空調_配管方式	none	String	未定義
+空調機_室内機_形式	none	String	未定義
+外気処理_方式	none	String	未定義
+外気処理_機器番号	none	String	未定義
+加湿_方式	none	String	未定義
+加湿_機器番号	none	String	未定義
+空調制御_手元/中央	none	String	未定義
+換気_種別	none	String	未定義
+換気_給気方式	none	String	未定義
+給気機器番号	none	String	未定義
+換気_排気方式	none	String	未定義
+排気機器番号	none	String	未定義
+空調換気_人員_固定値［人］	none	Numeric	0
+空調換気_人員_設計人員密度［人/m2］	none	Numeric	0
+換気_単位人外気量［m3/h/人］	none	Numeric	0
+換気_換気回数［回/h］	none	Numeric	0
+換気_火を使用する室_定数	none	Numeric	0
+換気_火を使用する室_燃料消費量［kW］	none	Numeric	0
+換気_シックハウス対策換気回数［回/h］	none	Numeric	0
+換気_正圧・負圧	none	String	未定義
+空調備考_設計メモ	none	String	未定義
+空調機_室外機_型式	none	String	未定義
+空調機_室外機_機器番号	none	String	未定義
+空調機_室内機①_機器番号	none	String	未定義
+空調機_室内機①_冷房能力［kW］	none	Numeric	0
+空調機_室内機①［個］	none	Numeric	0
+空調機_室内機②_機器番号	none	String	未定義
+空調機_室内機②_冷房能力［kW］	none	Numeric	0
+空調機_室内機②［個］	none	Numeric	0
+空調_冷房負荷原単位［W/m2］	none	Numeric	0
+空調_暖房負荷原単位［W/m2］	none	Numeric	0
+空調_躯体負荷［W/m2］	none	Numeric	0
+空調_照明負荷［W/m2］	none	Numeric	0
+空調_コンセント負荷［W/m2］	none	Numeric	0
+空調_機器負荷［W/m2］	none	Numeric	0
+空調_人体負荷［W/m2］	none	Numeric	0
+ペリメーターゾーン［有無］	none	String	未定義
+ペリメーター幅［m］	none	Numeric	0
+照明_計算照度［Lx］	none	Numeric	0
+照明器具①_器具個数［個］	none	Numeric	0
+照明器具②_器具個数［個］	none	Numeric	0
+換気_決定換気量［m3/h］	none	Numeric	0
+換気_決定給気量［m3/h］	none	Numeric	0
+換気_決定排気量［m3/h］	none	Numeric	0
+熱負荷_冷房_顕熱合計［kW］	none	Numeric	0
+熱負荷_冷房_潜熱合計［kW］	none	Numeric	0
+熱負荷_冷房_全熱［kW］	none	Numeric	0
+熱負荷_冷房_単位面積熱負荷［W/m2］	none	Numeric	0
+熱負荷_暖房_顕熱合計［kW］	none	Numeric	0
+熱負荷_暖房_潜熱合計［kW］	none	Numeric	0
+熱負荷_暖房_全熱［kW］	none	Numeric	0
+熱負荷_暖房_単位面積熱負荷［W/m2］	none	Numeric	0
+排煙_決定_設計排煙量［m3/h］	none	Numeric	0
+区画	区画の種類を設定します。	OptionSet	未選択	未選択	防火区画	界壁	防火上主要な間仕切壁	小屋裏隔壁	排煙区画	対象外
+耐火性能	要素の耐火性能を設定します。	OptionSet	未選択	未選択	3時間耐火構造	2時間耐火構造	1時間耐火構造	30分耐火構造	1時間準耐火構造	45分準耐火構造	30分準耐火構造	防火構造	準防火構造	対象外
+壁遮音性能	要素の遮音性能を設定します。	OptionSet	未選択	未選択	D-60	D-55	D-50	D-45	D-40	D-35	D-30	対象外
+床遮音性能	要素の遮音性能を設定します。	OptionSet	未選択	未選択	L-80	L-75	L-70	L-65	L-60	L-55	L-50	L-45	L-40	L-35	L-30	対象外
+認定番号	要素に関連する認定番号を記載します。	String	未定義
+告示番号	要素に関連する告示番号を記載します。	String	未定義
+名称	仕上の名称を記載します。	String	未定義
+品番	仕上の品番を記載します。	String	未定義
+メーカー	仕上のメーカーを記載します。	String	未定義
+WEBサイト	関連するWEBサイトを記載します。	String	未定義
+工事区分	要素の工事区分を設定します。	OptionSet	未選択	未選択	A工事	B工事	C工事	対象外
+工事種別	要素の工事種別を設定します。	OptionSet	未選択	未選択	仮設工事	基礎工事	躯体工事	屋根工事	建具工事	外装工事	内装工事	設備工事	外構工事	雑工事	対象外
+施工フェーズ	要素の施工フェーズを記載します。	String	未定義
+施工状況	要素の施工状況を設定します。	OptionSet	未選択	未選択	施工前	施工中	施工済み	対象外
+施工社名	施工者名を記載します。	String	未定義
+施工者連絡先	施工者連絡先を記載します。	String	未定義
+保証内容	保証内容を記載します。	String	未定義
+保証開始日	保証開始日を記載します。	String	年/月/日
+保証期間	保証期間を記載します。	String	未定義
+保証番号	保証番号を記載します。	String	未定義
+LGS種別	none	OptionSet	未選択	未選択	50	65	75	90	100
+断熱・防露	none	OptionSet	なし	なし	グラスウール	ロックウール	ポリスチレンフォーム保温板	ウレタンフォーム保温板	フェノールフォーム保温板	ポリエチレンフィルム
+階	none	String	未定義
+部位	none	OptionSet	未選択	未選択	内	外
+室名	none	String	未定義
+法規制	none	String	未定義
+形式記号	none	String	未定義
+枠：形状	none	String	未定義
+枠：見込	none	String	未定義
+枠：材質	none	String	未定義
+枠：仕上	none	String	未定義
+くつずり：形状	none	String	未定義
+くつずり：材質	none	String	未定義
+くつずり：仕上	none	String	未定義
+扉：見込	none	String	未定義
+扉：材質	none	String	未定義
+扉：仕上	none	String	未定義
+扉：召合せ	none	String	未定義
+額縁：見込	none	String	未定義
+額縁：材質	none	String	未定義
+額縁：仕上	none	String	未定義
+ガラス：押縁	none	String	未定義
+ガラス：種類及び厚さ	none	String	未定義
+ガラリ：形状	none	String	未定義
+ガラリ：成	none	String	未定義
+ガラリ：材質	none	String	未定義
+ガラリ：仕上	none	String	未定義
+錠	none	String	未定義
+把手類・握玉	none	String	未定義
+金物・支持	none	String	未定義
+金物・その他	none	String	未定義
+備考	none	String	未定義
+階	none	String	未定義
+部位	none	OptionSet	未選択	未選択	内	外
+室名	none	String	未定義
+法規制	none	String	未定義
+形式記号	none	String	未定義
+枠：見込	none	String	未定義
+枠：材質	none	String	未定義
+枠：仕上	none	String	未定義
+枠：縦枠	none	String	未定義
+枠：下枠	none	String	未定義
+障子：材質	none	String	未定義
+障子：仕上	none	String	未定義
+水切：見込	none	String	未定義
+水切：材質	none	String	未定義
+水切：仕上	none	String	未定義
+額縁：見込	none	String	未定義
+額縁：材質	none	String	未定義
+額縁：仕上	none	String	未定義
+ガラス：種類及び厚さ	none	String	未定義
+グレイシング：材質	none	String	未定義
+網戸：材質	none	String	未定義
+網戸：開閉方式	none	String	未定義
+ガラリ：形状	none	String	未定義
+ガラリ：材質	none	String	未定義
+ガラリ：仕上	none	String	未定義
+金物	none	String	未定義
+備考	none	String	未定義
+気密性	none	String	未定義
+遮音性	none	String	未定義
+室分類	室分類を設定します。	OptionSet	未定義	居室	非居室	対象外	未定義
+用途分類（大）	用途分類（大分類）を記載します。	String	none
+用途分類（中）	用途分類（中分類）を記載します。	String	none
+用途分類（小）	用途分類（小分類）を記載します。	String	none
+収容人数	収容人数を記載します。	Integer	0
+室内温度	室内温度（℃）を記載します。	Numeric	0
+室内湿度	室内湿度（%）を記載します。	Numeric	0
+室内照度	室内照度（lx）を記載します。	Integer	0
+騒音レベル	室内騒音レベルの許容値を設定します。	OptionSet	未定義	N-80	N-75	N-70	N-65	N-60	N-55	N-50	N-45	N-40	N-35	N-30	N-25	対象外	未定義
+清浄度クラス	清浄度クラスを設定します。	OptionSet	未定義	クラス1	クラス2	クラス3	クラス4	クラス5	クラス6	クラス7	クラス8	クラス9	対象外	未定義
+換気方式	換気方式を設定します。	OptionSet	未定義	自然換気	機械換気（第一種）	機械換気（第二種）	機械換気（第三種）	対象外	未定義
+換気回数	換気回数（回/h）を記載します。	Integer	0
