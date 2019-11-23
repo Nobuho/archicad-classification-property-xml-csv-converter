@@ -92,7 +92,7 @@ for tag in tree.iter():
     elif re.match(xpath4, path):
         cls4 = text
         classification_list.append([cls1, cls2, cls3, cls4, cls4])
-with codecs.open('classification.csv', 'w', 'cp932', 'ignore') as f:
+with codecs.open('classification.csv', encoding="utf_8_sig") as f:
     writer = csv.writer(f, delimiter=',')
     writer.writerows(classification_list)
 
@@ -115,6 +115,6 @@ for tag in tree.iter():
         classification = text
     elif re.match(xpath_classification, path):
         mapping_list.append([classification, text])
-with codecs.open('classification_property_mapping.csv', 'w', 'cp932', 'ignore') as f:
+with codecs.open('classification_property_mapping.csv', 'w', encoding="utf_8_sig") as f:
     writer = csv.writer(f, delimiter=',')
     writer.writerows(mapping_list)
