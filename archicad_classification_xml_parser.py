@@ -7,7 +7,7 @@ import re
 tree = etree.parse("archicad_classification_xml/archicad_classification_xml.xml")
 
 # ##################################################
-# making classification property list
+# making property list
 # ##################################################
 
 # This csv is just mapping list between classification and property.
@@ -57,6 +57,7 @@ for tag in tree.iter():
         optset_dict[property_optset_key] = property_optset
         tmp.append(property_optset)
 
+property_list.pop(0)
 property_list.append(tmp)
 
 with codecs.open('property.csv', 'w', encoding="utf_8_sig") as f:
