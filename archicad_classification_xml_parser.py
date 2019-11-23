@@ -4,7 +4,8 @@ import codecs
 import re
 
 
-tree = etree.parse("archicad_classification_xml/archicad_classification_xml.xml")
+xml_filepath = "archicad_xml/archicad_classification_property.xml"
+tree = etree.parse(xml_filepath)
 
 # ##################################################
 # making property list
@@ -13,10 +14,11 @@ tree = etree.parse("archicad_classification_xml/archicad_classification_xml.xml"
 # This csv is just mapping list between classification and property.
 # You need to combine these two list based on this mapping table.
 
-property_list = [["name", "discription", "data type", "defaultvalue", "opt1", "opt2", "opt3", "opt4", "opt5", "opt6", "opt7", "opt8", "opt9", "opt10", "opt11"]]
+property_list = [["group", "name", "discription", "data type", "defaultvalue", "opt1", "opt2", "opt3", "opt4", "opt5", "opt6", "opt7", "opt8", "opt9", "opt10", "opt11"]]
 tmp = []
 optset_dict = {}
 
+xpath_property_group = r"/BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/Name"
 xpath_property_name = r"/BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/Name"
 xpath_property_discription = r"/BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/Description"
 xpath_property_type1 = r"/BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/ValueDescriptor/ValueType"
@@ -30,11 +32,13 @@ for tag in tree.iter():
     text = tree.xpath(path)[0].text
     if text is None:
         text = "none"
+    if re.match(xpath_property_group, path):
+        property_group = text
     if re.match(xpath_property_name, path):
         property_list.append(tmp)
         tmp = []
         property_name = text
-        tmp.append(property_name)
+        tmp.extend([property_group, property_name])
     elif re.match(xpath_property_discription, path):
         property_discription = text
         tmp.append(property_discription)
@@ -46,7 +50,7 @@ for tag in tree.iter():
     elif re.match(xpath_property_default, path):
         if re.match("........-....-....-....-............", text):
             # If type is optset it's needed to add special default value based on the optset key
-            tmp.insert(3, optset_dict[text])
+            tmp.insert(4, optset_dict[text])
             continue
         property_default = text
         tmp.append(property_default)

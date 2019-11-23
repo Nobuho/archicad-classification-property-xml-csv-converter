@@ -14,7 +14,7 @@ Culuculation field
 
 1. Property list
 
-Columns : "name", "discription", "data type", "defaultvalue", "opts"
+Columns : "group", "name", "discription", "data type", "defaultvalue", "opts"
 
 2. Classification list 
 
@@ -29,31 +29,33 @@ Columns : "classification", "property"
 ```
 # property
 
+# group
+# /BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/Name
 # name
-# /BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup[4]/PropertyDefinitions/PropertyDefinition[1]/Name
+# /BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/Name
 # discription
-# /BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup[4]/PropertyDefinitions/PropertyDefinition[1]/Description
+# /BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/Description
 # datatype
-# /BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup[4]/PropertyDefinitions/PropertyDefinition[1]/ValueDescriptor/EnumerationValueDescriptorWithStoredValues/ValueType
-# /BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d+?\]/PropertyDefinitions/PropertyDefinition\[\d+?\]/ValueDescriptor/ValueType
+# /BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/ValueDescriptor/EnumerationValueDescriptorWithStoredValues/ValueType
+# /BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/ValueDescriptor/ValueType
 # default value
-# /BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup[4]/PropertyDefinitions/PropertyDefinition[2]/DefaultValue/Variant/Value
+# /BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/DefaultValue/Variant/Value
 # key of default value in OptionSet
 # /BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/ValueDescriptor/EnumerationValueDescriptorWithStoredValues/Values/Key\[\d*\]
 # option set
-# /BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup[4]/PropertyDefinitions/PropertyDefinition[1]/ValueDescriptor/EnumerationValueDescriptorWithStoredValues/Values/Value[2]/Variant/Value
+# /BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/ValueDescriptor/EnumerationValueDescriptorWithStoredValues/Values/Value\[\d*\]/Variant/Value
 
 # classification
 
-# /BuildingInformation/Classification/System/Items/Item\[\d\]/ID
-# /BuildingInformation/Classification/System/Items/Item\[\d\]/Children/Item\[\d\]/ID
-# /BuildingInformation/Classification/System/Items/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/ID
-# /BuildingInformation/Classification/System/Items/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/ID
-# /BuildingInformation/Classification/System/Items/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/ID
+# /BuildingInformation/Classification/System/Items/Item\[\d*\]/ID
+# /BuildingInformation/Classification/System/Items/Item\[\d*\]/Children/Item\[\d*\]/ID
+# /BuildingInformation/Classification/System/Items/Item\[\d*\]/Children/Item\[\d*\]/Children/Item\[\d*\]/ID
+# /BuildingInformation/Classification/System/Items/Item\[\d*\]/Children/Item\[\d*\]/Children/Item\[\d*\]/Children/Item\[\d*\]/ID
+# /BuildingInformation/Classification/System/Items/Item\[\d*\]/Children/Item\[\d*\]/Children/Item\[\d*\]/Children/Item\[\d*\]/Children/Item\[\d*\]/ID
 
 # mapping
 
-# /BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup[7]/PropertyDefinitions/PropertyDefinition[4]/ClassificationIDs/ClassificationID/ItemID
-# /BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup[7]/PropertyDefinitions/PropertyDefinition[2]/Name
+# /BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/ClassificationIDs/ClassificationID/ItemID
+# /BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/Name
 
 ```
