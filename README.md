@@ -1,6 +1,6 @@
 # archicad-classification-xml-parser
 
-Main purpose of this script is extract the data from Archicad22 property and classification setting xml file.
+Extract the data from xml file of Archicad22 property and classification setting.
 
 # Target
 
@@ -8,7 +8,7 @@ Archicad 22
 
 #  Not support
 
-Culuculation field
+Caluculation field
 
 # Extraction list
 
