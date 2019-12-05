@@ -109,7 +109,7 @@ with codecs.open('classification.csv', 'w', encoding="utf_8_sig") as f:
 # This csv is just mapping list between classification and property.
 # You need to combine these two list based on this mapping table.
 
-mapping_list = [["classification", "property"]]
+mapping_list = [["property", "classification"]]
 
 xpath_property_name = r"/BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/Name"
 xpath_classification = r"/BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup.*ItemID"
