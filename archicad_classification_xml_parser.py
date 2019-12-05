@@ -4,8 +4,10 @@ import codecs
 import re
 
 
-xml_filepath = "archicad_xml/archicad_classification_property.xml"
+xml_filepath = "archicad_xml/fdsafdsafdsafdasfad.xml"
+
 tree = etree.parse(xml_filepath)
+root = tree.getroot()
 
 # ##################################################
 # making property list
@@ -15,56 +17,43 @@ tree = etree.parse(xml_filepath)
 # You need to combine these two list based on this mapping table.
 
 property_list = [["group", "name", "discription", "data type", "defaultvalue", "opt1", "opt2", "opt3", "opt4", "opt5", "opt6", "opt7", "opt8", "opt9", "opt10", "opt11"]]
-tmp = []
-optset_dict = {}
 
-xpath_property_group = r"/BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/Name"
-xpath_property_name = r"/BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/Name"
-xpath_property_discription = r"/BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/Description"
-xpath_property_type1 = r"/BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/ValueDescriptor/ValueType"
-xpath_property_type2 = r"/BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/ValueDescriptor/EnumerationValueDescriptorWithStoredValues/ValueType"
-xpath_property_default = r"/BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/DefaultValue/Variant/Value"
-xpath_property_optset = r"/BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/ValueDescriptor/EnumerationValueDescriptorWithStoredValues/Values/Value\[\d+?\]/Variant/Value"
-xpath_property_optset_key = r"/BuildingInformation/PropertyDefinitionGroups/PropertyDefinitionGroup\[\d*\]/PropertyDefinitions/PropertyDefinition\[\d*\]/ValueDescriptor/EnumerationValueDescriptorWithStoredValues/Values/Key\[\d*\]"
+pg = [i for i in root.iterfind('PropertyDefinitionGroups/PropertyDefinitionGroup')]
 
-for tag in tree.iter():
-    path = tree.getpath(tag)
-    text = tree.xpath(path)[0].text
-    if text is None:
-        text = "none"
-    if re.match(xpath_property_group, path):
-        property_group = text
-    if re.match(xpath_property_name, path):
-        property_list.append(tmp)
-        tmp = []
-        property_name = text
-        tmp.extend([property_group, property_name])
-    elif re.match(xpath_property_discription, path):
-        property_discription = text
-        tmp.append(property_discription)
-    elif re.match(xpath_property_type1, path) or re.match(xpath_property_type2, path):
-        if text == "3":
-            text = "OptionSet"
-        property_type = text
-        tmp.append(property_type)
-    elif re.match(xpath_property_default, path):
-        if re.match("........-....-....-....-............", text):
-            # If type is optset it's needed to add special default value based on the optset key
-            tmp.insert(4, optset_dict[text])
-            continue
-        property_default = text
-        tmp.append(property_default)
-    elif re.match(xpath_property_optset_key, path):
-        property_optset_key = text
-    elif re.match(xpath_property_optset, path):
-        property_optset = text
-        optset_dict[property_optset_key] = property_optset
-        tmp.append(property_optset)
+for n in pg:
+    pg_name = n.find("Name").text
+    pg_p = n.findall("PropertyDefinitions/PropertyDefinition")
+    p_list = []
 
-property_list.pop(1)
-property_list.append(tmp)
+    for i in pg_p:
+        p = []
+        pg_p_opts_val = []
+        pg_p_name = i.find("Name").text 
+        pg_p_des = i.find("Description").text
 
-with codecs.open('property.csv', 'w', encoding="utf_8_sig") as f:
+        if i.find("ValueDescriptor/EnumerationValueDescriptorWithStoredValues/ValueType") != None:
+            print("foo")
+            pg_p_typ = "Optset"
+            pg_p_opts_key = [n.text for n in i.findall("ValueDescriptor/EnumerationValueDescriptorWithStoredValues/Values/Key")]
+            pg_p_opts_val = [n.text for n in i.findall("ValueDescriptor/EnumerationValueDescriptorWithStoredValues/Values/Value/Variant/Value")]
+            pg_p_opts_dict = {key: value for key, value in zip(pg_p_opts_key, pg_p_opts_val)}
+            pg_p_def_key = i.find("DefaultValue/Variant/Value").text
+            pg_p_def = pg_p_opts_dict[pg_p_def_key]
+            
+        elif i.find("DefaultValue/DefaultValueType") != None:
+            if i.find("DefaultValue/DefaultValueType").text == "Expression":
+                pg_p_typ = "Expression"
+                pg_p_def = i.find("DefaultValue/ExpressionDefaultValue/Expression").text
+            else:
+                pg_p_typ = i.find("ValueDescriptor/ValueType").text
+                pg_p_def = i.find("DefaultValue/Variant/Value").text
+
+        p += [pg_name, pg_p_name, pg_p_des, pg_p_typ, pg_p_def]
+        p += pg_p_opts_val
+
+        property_list.append(p)
+
+with codecs.open('Property.csv', 'w', encoding="utf_8_sig") as f:
     writer = csv.writer(f, delimiter='\t')
     writer.writerows(property_list)
 
@@ -76,11 +65,11 @@ with codecs.open('property.csv', 'w', encoding="utf_8_sig") as f:
 
 classification_list = [["Level 1", "Level 2", "Level 3", "Level 4", "Merged"]]
 
-xpath1 = r"/BuildingInformation/Classification/System/Items/Item\[\d\]/ID"
-xpath2 = r"/BuildingInformation/Classification/System/Items/Item\[\d\]/Children/Item\[\d\]/ID"
-xpath3 = r"/BuildingInformation/Classification/System/Items/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/ID"
-xpath4 = r"/BuildingInformation/Classification/System/Items/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/ID"
-xpath5 = r"/BuildingInformation/Classification/System/Items/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/Children/Item\[\d\]/ID"
+xpath1 = r"/BuildingInformation/Classification/System/Items/Item\[\d*\]/ID"
+xpath2 = r"/BuildingInformation/Classification/System/Items/Item\[\d*\]/Children/Item\[\d*\]/ID"
+xpath3 = r"/BuildingInformation/Classification/System/Items/Item\[\d*\]/Children/Item\[\d*\]/Children/Item\[\d*\]/ID"
+xpath4 = r"/BuildingInformation/Classification/System/Items/Item\[\d*\]/Children/Item\[\d*\]/Children/Item\[\d*\]/Children/Item\[\d*\]/ID"
+xpath5 = r"/BuildingInformation/Classification/System/Items/Item\[\d*\]/Children/Item\[\d*\]/Children/Item\[\d*\]/Children/Item\[\d*\]/Children/Item\[\d*\]/ID"
 
 for tag in tree.iter():
     path = tree.getpath(tag)
@@ -101,6 +90,7 @@ for tag in tree.iter():
 with codecs.open('classification.csv', 'w', encoding="utf_8_sig") as f:
     writer = csv.writer(f, delimiter='\t')
     writer.writerows(classification_list)
+
 
 # ##################################################
 # making classification property mapping list
