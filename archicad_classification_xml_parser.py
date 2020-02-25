@@ -4,7 +4,7 @@ import codecs
 import re
 
 
-xml_filepath = "archicad_xml/fdsafdsafdsafdasfad.xml"
+xml_filepath = "archicad_xml/ArchiCAD23テンプレート_1_プロパティ.xml"
 
 tree = etree.parse(xml_filepath)
 root = tree.getroot()
@@ -32,7 +32,6 @@ for n in pg:
         pg_p_des = i.find("Description").text
 
         if i.find("ValueDescriptor/EnumerationValueDescriptorWithStoredValues/ValueType") != None:
-            print("foo")
             pg_p_typ = "Optset"
             pg_p_opts_key = [n.text for n in i.findall("ValueDescriptor/EnumerationValueDescriptorWithStoredValues/Values/Key")]
             pg_p_opts_val = [n.text for n in i.findall("ValueDescriptor/EnumerationValueDescriptorWithStoredValues/Values/Value/Variant/Value")]
