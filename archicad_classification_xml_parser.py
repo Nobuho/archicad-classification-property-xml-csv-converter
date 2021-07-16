@@ -4,7 +4,7 @@ import codecs
 import re
 
 
-xml_filepath = "archicad_xml/ArchiCAD23テンプレート_1_プロパティ.xml"
+xml_filepath = "tktemplate.xml"
 
 tree = etree.parse(xml_filepath)
 root = tree.getroot()
@@ -30,6 +30,10 @@ for n in pg:
         pg_p_opts_val = []
         pg_p_name = i.find("Name").text 
         pg_p_des = i.find("Description").text
+        
+        # deleting new line in description
+        if pg_p_des:
+            pg_p_des = pg_p_des.replace('\n','')
 
         if i.find("ValueDescriptor/EnumerationValueDescriptorWithStoredValues/ValueType") != None:
             pg_p_typ = "Optset"
